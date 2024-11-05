@@ -10,10 +10,20 @@
 <body>
     <div class="container" id="login-container">
         <h1>Login</h1>
-        <input type="text" id="username" placeholder="Usuário" />
-        <input type="password" id="password" placeholder="Senha" />
+        <input type="text" id="login-username" placeholder="Usuário" />
+        <input type="password" id="login-password" placeholder="Senha" />
         <button onclick="login()" class="btn"><i class="fas fa-sign-in-alt"></i> Acessar</button>
         <p id="login-error" class="error-message"></p>
+        <p>Não tem uma conta? <a href="#" onclick="toggleRegistration()">Registre-se aqui</a></p>
+    </div>
+
+    <div class="container" id="register-container" style="display: none;">
+        <h1>Registrar</h1>
+        <input type="text" id="register-username" placeholder="Novo Usuário" />
+        <input type="password" id="register-password" placeholder="Nova Senha" />
+        <button onclick="registerUser()" class="btn"><i class="fas fa-user-plus"></i> Registrar</button>
+        <p id="register-error" class="error-message"></p>
+        <p>Já tem uma conta? <a href="#" onclick="toggleRegistration()">Faça login</a></p>
     </div>
 
     <div class="container" id="main-container" style="display: none;">
@@ -23,15 +33,21 @@
             <button onclick="searchAluno()" class="btn"><i class="fas fa-search"></i> Buscar</button>
         </div>
         
-        <div id="aluno-list" class="aluno-list"></div>
+        <div id="aluno-ficha" class="aluno-ficha" style="display: none;">
+            <img id="foto-aluno" src="" alt="Foto do Aluno" class="aluno-foto" />
+            <div id="aluno-info"></div>
+        </div>
 
         <h2 id="form-title">Criar Nova Ficha</h2>
         <div class="form-group">
             <input type="text" id="nome" placeholder="Nome do Aluno" required />
             <input type="number" id="idade" placeholder="Idade" required />
             <input type="text" id="cgm" placeholder="CGM" required />
+            <input type="text" id="doencas" placeholder="Doenças" />
+            <input type="text" id="pais" placeholder="Nome dos Pais" />
             <textarea id="atividades" placeholder="Atividades do Aluno" required></textarea>
             <textarea id="observacoes" placeholder="Observações"></textarea>
+            <input type="file" id="foto" accept="image/*" />
         </div>
         <button id="submit-btn" onclick="addAluno()" class="btn btn-primary">Adicionar Aluno</button>
     </div>
