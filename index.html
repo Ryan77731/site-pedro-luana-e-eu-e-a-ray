@@ -8,48 +8,46 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="container" id="login-container">
-        <h1>Login</h1>
-        <input type="text" id="login-username" placeholder="Usuário" />
-        <input type="password" id="login-password" placeholder="Senha" />
-        <button onclick="login()" class="btn"><i class="fas fa-sign-in-alt"></i> Acessar</button>
-        <p id="login-error" class="error-message"></p>
-        <p>Não tem uma conta? <a href="#" onclick="toggleRegistration()">Registre-se aqui</a></p>
+    <!-- Navbar de navegação -->
+    <nav class="navbar">
+        <button onclick="showSection('student-list')">Fichas dos Estudantes</button>
+        <button onclick="showSection('occurrences')">Ocorrências</button>
+        <button onclick="showSection('add-student')">Cadastro de Aluno</button>
+    </nav>
+
+    <!-- Seção de Lista de Estudantes -->
+    <div id="student-list" class="section">
+        <h2>Fichas dos Estudantes</h2>
+        <input type="text" id="search-student" placeholder="Pesquisar aluno..." onkeyup="searchStudent()" />
+        <ul id="student-list-container"></ul>
     </div>
 
-    <div class="container" id="register-container" style="display: none;">
-        <h1>Registrar</h1>
-        <input type="text" id="register-username" placeholder="Novo Usuário" />
-        <input type="password" id="register-password" placeholder="Nova Senha" />
-        <button onclick="registerUser()" class="btn"><i class="fas fa-user-plus"></i> Registrar</button>
-        <p id="register-error" class="error-message"></p>
-        <p>Já tem uma conta? <a href="#" onclick="toggleRegistration()">Faça login</a></p>
+    <!-- Seção de Ocorrências -->
+    <div id="occurrences" class="section" style="display: none;">
+        <h2>Ocorrências dos Alunos</h2>
+        <select id="student-select" onchange="showOccurrences(this.value)">
+            <option value="">Selecione um aluno</option>
+        </select>
+        <div id="occurrence-list-container"></div>
+        <h3>Adicionar Ocorrência</h3>
+        <textarea id="new-occurrence" placeholder="Descrição da ocorrência"></textarea>
+        <button onclick="addOccurrence()">Adicionar Ocorrência</button>
     </div>
 
-    <div class="container" id="main-container" style="display: none;">
-        <h1>Gestão de Alunos</h1>
-        <div class="search-bar">
-            <input type="text" id="search" placeholder="Pesquisar aluno pelo nome..." />
-            <button onclick="searchAluno()" class="btn"><i class="fas fa-search"></i> Buscar</button>
-        </div>
-        
-        <div id="aluno-ficha" class="aluno-ficha" style="display: none;">
-            <img id="foto-aluno" src="" alt="Foto do Aluno" class="aluno-foto" />
-            <div id="aluno-info"></div>
-        </div>
-
-        <h2 id="form-title">Criar Nova Ficha</h2>
+    <!-- Seção de Cadastro/Editar Aluno -->
+    <div id="add-student" class="section" style="display: none;">
+        <h2 id="form-title">Cadastro de Aluno</h2>
         <div class="form-group">
-            <input type="text" id="nome" placeholder="Nome do Aluno" required />
-            <input type="number" id="idade" placeholder="Idade" required />
-            <input type="text" id="cgm" placeholder="CGM" required />
-            <input type="text" id="doencas" placeholder="Doenças" />
-            <input type="text" id="pais" placeholder="Nome dos Pais" />
-            <textarea id="atividades" placeholder="Atividades do Aluno" required></textarea>
-            <textarea id="observacoes" placeholder="Observações"></textarea>
-            <input type="file" id="foto" accept="image/*" />
+            <input type="text" id="student-name" placeholder="Nome do Aluno" required />
+            <input type="number" id="student-age" placeholder="Idade" required />
+            <input type="text" id="student-cgm" placeholder="CGM" required />
+            <input type="text" id="student-diseases" placeholder="Doenças" />
+            <input type="text" id="student-parents" placeholder="Nome dos Pais" />
+            <textarea id="student-activities" placeholder="Atividades do Aluno" required></textarea>
+            <textarea id="student-observations" placeholder="Observações"></textarea>
+            <input type="file" id="student-photo" accept="image/*" />
         </div>
-        <button id="submit-btn" onclick="addAluno()" class="btn btn-primary">Adicionar Aluno</button>
+        <button onclick="saveStudent()" class="btn btn-primary">Salvar Aluno</button>
     </div>
 
     <script src="script.js"></script>
