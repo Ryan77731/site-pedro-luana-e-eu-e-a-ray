@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Alunos</title>
+    <link rel="stylesheet" href="css/style.css"> <!-- Caminho do CSS -->
+</head>
+<body>
+    <div class="navbar">
+        <button onclick="showSection('student-list')">Lista de Alunos</button>
+        <button onclick="showSection('register-student')">Cadastrar Aluno</button>
+        <button onclick="showSection('occurrences')">Ocorrências</button>
+    </div>
+
+    <!-- Seções -->
+    <div class="section" id="student-list">
+        <h2>Lista de Alunos</h2>
+        <input type="text" id="search-student" oninput="showStudents()" placeholder="Pesquisar aluno...">
+        <table>
+            <thead>
+                <tr>
+                    <th>Foto</th>
+                    <th>Nome</th>
+                    <th>CGM</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="student-list-container">
+                <!-- Alunos serão listados aqui -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section" id="register-student" style="display:none;">
+        <h2>Cadastrar Aluno</h2>
+        <form id="student-form">
+            <div class="form-group">
+                <input type="hidden" id="student-id">
+                <input type="text" id="student-name" placeholder="Nome do Aluno" required>
+                <input type="number" id="student-age" placeholder="Idade" required>
+                <input type="text" id="student-cgm" placeholder="CGM" required>
+                <input type="text" id="student-cpf" placeholder="CPF" required>
+                <input type="text" id="student-phone" placeholder="Telefone" required>
+                <input type="text" id="student-class" placeholder="Turma" required>
+                <textarea id="student-diseases" placeholder="Doenças"></textarea>
+                <textarea id="student-parents" placeholder="Pais/Responsáveis"></textarea>
+                <textarea id="student-activities" placeholder="Atividades Extra-Curriculares"></textarea>
+                <textarea id="student-observations" placeholder="Observações"></textarea>
+                <input type="file" id="student-photo">
+                <button type="button" onclick="saveStudent()">Salvar</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="section" id="occurrences" style="display:none;">
+        <h2>Ocorrências</h2>
+        <select id="student-select">
+            <option value="">Selecione um aluno</option>
+        </select>
+        <textarea id="new-occurrence" placeholder="Descrição da ocorrência"></textarea>
+        <input type="file" id="occurrence-photo">
+        <button type="button" onclick="addOccurrence()">Adicionar Ocorrência</button>
+        <div id="occurrence-list-container"></div>
+    </div>
+
+    <script src="js/script.js"></script> <!-- Caminho do JS -->
+</body>
+</html>
